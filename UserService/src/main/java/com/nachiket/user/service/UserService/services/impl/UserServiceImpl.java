@@ -5,6 +5,7 @@ import com.nachiket.user.service.UserService.exception.ResourceNotFoundException
 import com.nachiket.user.service.UserService.repository.UserRepository;
 import com.nachiket.user.service.UserService.services.UserService;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceImpl implements UserService {
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User saveUser(User user) {
+    String userId = UUID.randomUUID().toString();
+    user.setUserId(userId);
     return userRepository.save(user);
   }
 
@@ -25,6 +28,6 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUser(String userId) {
     return userRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("User "
-        + "with given id does not exists"));
+        + "with given id does not exists on the server"));
   }
 }
