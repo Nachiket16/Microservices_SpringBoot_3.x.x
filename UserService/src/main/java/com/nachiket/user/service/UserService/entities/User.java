@@ -4,6 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,4 +28,8 @@ public class User {
   private String email;
   @Column(name = "ABOUT")
   private String about;
+
+  @Transient    //This field will be ignored by the JPA
+  private List<Rating> ratings = new ArrayList<>();
+
 }

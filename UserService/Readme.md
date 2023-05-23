@@ -1,0 +1,1 @@
+@Transient    //This field will be ignored by the JPA
