@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8082
 
 spring:
   datasource:
@@ -12,6 +12,9 @@ spring:
     show-sql: true
   application:
     name: HOTEL-SERVICE
+  rsocket:
+    server:
+
 
 eureka:
   instance:
