@@ -3,6 +3,7 @@ package com.nachiket.rating.services.impl;
 import com.nachiket.rating.entities.Rating;
 import com.nachiket.rating.repository.RatingRepository;
 import com.nachiket.rating.services.RatingService;
+import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class RatingServiceImpl implements RatingService {
 
     @Override
     public Rating create(Rating rating) {
+        rating.setRatingId(UUID.randomUUID().toString());
         return repository.save(rating);
     }
 
