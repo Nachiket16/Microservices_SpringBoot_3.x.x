@@ -2,8 +2,6 @@ server:
   port: 8081
 
 spring:
-  application:
-    name: USER-SERVICE
   datasource:
     url: jdbc:mysql://localhost:3306/microservices
     username: appuser
@@ -20,14 +18,15 @@ spring:
     active: user-service-local
 
 management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
   endpoints:
+    enabled-by-default: false
     web:
       exposure:
         include: "*"
-
-  endpoint:
-    health:
-      show-details: always
 
 
 
