@@ -32,3 +32,8 @@ management:
     web:
       exposure:
         include: "*"
+
+okta:
+  oauth2:
+    issuer: https://dev-54918101.okta.com/oauth2/default
+    audience: api://default

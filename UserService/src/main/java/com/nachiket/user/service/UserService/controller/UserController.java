@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,18 +27,21 @@ public class UserController {
   private UserServiceImpl userService;
 
 
+  @PreAuthorize("hasAuthority('SCOPE_internal') || hasAuthority('Admin')")
   @PostMapping
   public ResponseEntity<User> createUser(@RequestBody User user) {
     User user1 = userService.saveUser(user);
     return ResponseEntity.status(HttpStatus.CREATED).body(user1);
   }
 
+  @PreAuthorize("hasAuthority('SCOPE_internal') || hasAuthority('Admin')")
   @GetMapping
   public ResponseEntity<List<User>> getAllUSer() {
     List<User> allUser = userService.getAllUser();
     return ResponseEntity.ok(allUser);
   }
   int retry = 1;
+
   @GetMapping("/{userId}")
 //  @CircuitBreaker(name = "ratingHotelBreaker", fallbackMethod = "ratingHotelFallback")
 //  @Retry(name = "ratingHotelBreaker",fallbackMethod = "ratingHotelFallback")
