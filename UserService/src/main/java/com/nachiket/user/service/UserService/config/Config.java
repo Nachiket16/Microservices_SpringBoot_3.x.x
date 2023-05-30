@@ -33,12 +33,14 @@ public class Config {
 
     List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
     interceptors.add(new RestTemplateInterceptor(manager(
-        clientRegistrationRepository,oAuth2AuthorizedClientRepository
+        clientRegistrationRepository,
+        oAuth2AuthorizedClientRepository
     )));
     restTemplate.setInterceptors(interceptors);
-    return new RestTemplate();
+    return restTemplate;
   }
 
+  @Bean
   public OAuth2AuthorizedClientManager manager(
       ClientRegistrationRepository clientRegistrationRepository,
       OAuth2AuthorizedClientRepository auth2AuthorizedClientRepository
